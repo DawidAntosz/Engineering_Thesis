@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot Panel</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+  <div class="split-screen">
+    <div class="left-panel">
+
+      <div id="range-container">
+        <label for="range-slider">Iteration Count</label>
+        <input type="range" id="range-slider" min="0" max="10" value="1" step="1">
+        <div id="slider-value">1</div>
+      </div>
+
+      <div class="arrow-container">
+        <button class="arrow-button up" onclick="sendAction('up')"> <span class="arrow"></span></button>
+        <div class="left-right-container">
+          <button class="arrow-button left" onclick="sendAction('left')"> <span class="arrow"></span></button>
+
+          <button id="start-button" class="start-button" onclick="startAction()"> <span>Start</span></button>
+          <button id="stop-button" class="stop-button" style="display: none;" onclick="stopAction()"> <span>Turn
+              OFF</span></button>
+
+          <button class="arrow-button right" onclick="sendAction('right')"> <span class="arrow"></span></button>
+        </div>
+        <button class="arrow-button down" onclick="sendAction('down')"> <span class="arrow"></span></button>
+      </div>
+
+
+
+
+
+      <!-- <div class="right-panel">
+        <h1>Accelerometer Data</h1>
+        <div id="accel-plot"></div>
+        <div id="gyro-plot"></div>
+
+        <img src="/plot.png" alt="my plot">
+      </div> -->
+
+
+
+
+
+
+      <script>
+        const rangeSlider = document.getElementById('range-slider');
+        const sliderValue = document.getElementById('slider-value');
+
+        const startButton = document.getElementById('start-button');
+        const stopButton = document.getElementById('stop-button');
+
+        rangeSlider.addEventListener('input', updateSliderValue);
+
+        function updateSliderValue() {
+          const sliderVal = rangeSlider.value;
+          sliderValue.textContent = sliderVal;
+          sendSliderValue(sliderVal);
+        }
+
+        function sendSliderValue(value) {
+          $.ajax({
+            type: 'POST',
+            url: '/update_slider',
+            data: JSON.stringify({ sliderValue: value }),
+            contentType: 'application/json;charset=UTF-8',
+            success: function (response) {
+              console.log(response);
+            },
+            error: function (error) {
+              console.error(error);
+            }
+          });
+        }
+
+        function startAction() {
+          sendAction('start')
+          startButton.style.display = 'none';
+          stopButton.style.display = 'inline-block';
+        }
+
+        function stopAction() {
+          sendAction('stop')
+          stopButton.style.display = 'none';
+          startButton.style.display = 'inline-block';
+        }
+
+        function sendAction(action) {
+          $.ajax({
+            type: 'POST',
+            url: '/perform_action',
+            data: JSON.stringify({ action: action, iterationCount: rangeSlider.value }),
+            contentType: 'application/json;charset=UTF-8',
+            success: function (response) {
+              console.log(response);
+            },
+            error: function (error) {
+              console.error(error);
+            }
+          });
+        }
+
+
+      </script>
+
+</body>
+
+</html>
