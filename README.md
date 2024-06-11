@@ -1,7 +1,7 @@
 # **Control system for a four-legged walking robot**
 
 ### Description: 
-<br>The present diploma thesis describes the implementation of a four-legged walking robot
+  The present diploma thesis describes the implementation of a four-legged walking robot
 control system. The scope of the work includes the realization of the mechanical
 construction, the execution of electrical connections, as well as the development of control
 software that supervises the robot's movements. A Banana Pi mini-computer was used as
