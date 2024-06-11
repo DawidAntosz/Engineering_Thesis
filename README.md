@@ -1,4 +1,4 @@
-# Thesis Title: **Control system for a four-legged walking robot**
+# **Control system for a four-legged walking robot**
 
 ### Description: 
 The present diploma thesis describes the implementation of a four-legged walking robot
