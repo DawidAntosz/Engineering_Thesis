@@ -20,7 +20,7 @@ implemented walking robot, which means its ability to move to achieve a specifie
 as well as continuous remote communication with the robot to change its position and
 control algorithm parameters.
 
-**Movie: [youtu.be/dEax441fGrM]**(https://youtu.be/dEax441fGrM)
+**Movie: [youtu.be/dEax441fGrM](https://youtu.be/dEax441fGrM)**
 
 <p align="center">
   <img src="https://github.com/DawidAntosz/Engineering_Thesis/assets/64035334/f6a7cb09-c753-4d9c-98a2-0d1e41522f38" />
